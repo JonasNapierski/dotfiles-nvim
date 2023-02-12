@@ -1,0 +1,1 @@
+require("jpudel.remap")
