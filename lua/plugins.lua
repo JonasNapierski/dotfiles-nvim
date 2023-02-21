@@ -1,4 +1,3 @@
--- Add here your plugins
 return require('packer').startup(function(use)
 
 
@@ -17,6 +16,8 @@ return require('packer').startup(function(use)
 	use 'L3MON4D3/LuaSnip'
 	use 'nvim-telescope/telescope.nvim'
 	use 'nvim-lua/plenary.nvim'
+  use { "catppuccin/nvim", as = "catppuccin" }
+  use {"ellisonleao/glow.nvim", config = function() require("glow").setup() end}
 end)
 
 
