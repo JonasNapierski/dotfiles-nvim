@@ -30,7 +30,7 @@ will come later
 
 ## Todos 
 
-- ...
+- [ ] Add install script to simplify the installation process
 
 
 ## What is the Purpose of this Repo
