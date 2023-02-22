@@ -25,8 +25,11 @@ Not realy intended but i will think about it
 
 ## Supported Languages
 
-- ...
-will come later
+- lua
+- c
+- python
+- (incomming) Rust
+- (incomming) JavaScript
 
 ## Todos 
 
