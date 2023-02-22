@@ -3,8 +3,20 @@ Hello, this is my "custom" nvim configuration. Currently it is mostly a replicao
 
 
 ## Installation
+Install `neovim` and `neovim.packer`
 
-currently Work in progress
+### Plugin Requirements:
+- Mason
+  - install npm
+
+1. Install neovim & neovim-packer
+2. Start clone this repo into `~./config/` and replace the folder `nvim` with the repo.
+3. Start nvim
+4. inside nvim ignore the errors and run `PackerSync`
+5. restart nvim
+6. Finish!
+
+Everything else will be handle by Packer or Npm
 
 ## Contribute
 
