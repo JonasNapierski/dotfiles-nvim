@@ -3,11 +3,29 @@
 vim.g.mapleader = 't'
 vim.g.maplocalleader = 't'
 
--- Custom remaps
+
+-- ---------------------------- Insert Mode ----------------------------
+--  ## Brackets
+vim.keymap.set('i', '(','()<left>',{desc="Auto Close () Brackets"})
+vim.keymap.set('i', '[','[]<left>',{desc="Auto Close [] Brackets"})
+vim.keymap.set('i', '{','{}<left>',{desc="Auto Close {} Brackets"})
+
+-- ## Quotes
+vim.keymap.set('i', "'","''<left>",{desc="Auto Close '' Quotes"})
+vim.keymap.set('i', '"','""<left>',{desc="Auto Close () Quotes"})
+-- ---------------------------- Normal Mode ----------------------------
 vim.keymap.set("n", "<leader>pv",vim.cmd.Ex, {desc="Open file explorer"})
 
 -- Set toggle  for what was searched
 vim.keymap.set('n', '<c-h>',':set hlsearch!<cr>', {desc="Toggle hide/show search term"})
+vim.keymap.set('n', '<leader>s',':w<cr>', {desc="Saves the currently open file"})
+vim.keymap.set('n', '<leader>c', ':!', {desc="Shortcut for using a command"})
+
+
+vim.keymap.set('n', '<leader>gf', ':!git add .<cr><cr>', {desc="git add ."})
+vim.keymap.set('n', '<leader>gc', ':!git commit -m ""<left>', {desc="git commit -m"})
+vim.keymap.set('n', '<leader>go', ':!git push<cr><cr>', {desc="git push"})
+vim.keymap.set('n', '<leader>gs', ':!git status<cr>', {desc="git status"})
 
 
 -- ---------------------------- REMAP keys ----------------------------
@@ -29,3 +47,12 @@ vim.keymap.set('n', 't', 't', {desc="find character and goto it one before (move
 
 vim.keymap.set('n', 'F', 'F', {desc="find character and go backwards to it (hover over it)"})
 vim.keymap.set('n', 'T', 'T', {desc="find character and go backwards it one before (move one char before that one)"})
+
+-- ---------------------------- Visual Mode ----------------------------
+vim.keymap.set('v', 'ö', '{', {remap = true, desc="Remap default { to german ö"})
+vim.keymap.set('v', 'ä', '}', {remap = true, desc="Remap default } to german ä"})
+
+vim.keymap.set('v', 'Ö', '[', {remap = true, desc="Remap default [ to german Ö"})
+vim.keymap.set('v', 'Ä', ']', {remap = true, desc="Remap default ] to german Ä"})
+
+
