@@ -13,6 +13,7 @@ vim.keymap.set('i', '{','{}<left>',{desc="Auto Close {} Brackets"})
 -- ## Quotes
 vim.keymap.set('i', "'","''<left>",{desc="Auto Close '' Quotes"})
 vim.keymap.set('i', '"','""<left>',{desc="Auto Close () Quotes"})
+vim.keymap.set('i', '`','``<left>',{desc="Auto Close `` Quotes"})
 -- ---------------------------- Normal Mode ----------------------------
 vim.keymap.set("n", "<leader>pv",vim.cmd.Ex, {desc="Open file explorer"})
 
