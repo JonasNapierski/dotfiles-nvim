@@ -31,6 +31,11 @@ Not realy intended but i will think about it
 - (incomming) Rust
 - (incomming) JavaScript
 
+## Structure
+
+`lua/jpudel/` inside the folder a general settings for my nvim config, for example `remap.lua` in there are all the git shortcuts etc
+
+`lua/plugin_config` contains to every plugin in a seperated lua file the configuration
 ## Todos 
 
 - [ ] Add install script to simplify the installation process
