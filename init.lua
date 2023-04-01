@@ -14,4 +14,4 @@ set.expandtab = true
 set.number = true
 set.relativenumber = true
 
-vim.cmd.colorscheme("catppuccin-macchiato")
+vim.cmd.colorscheme("carbonfox")
