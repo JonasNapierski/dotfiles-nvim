@@ -39,7 +39,8 @@ Not realy intended but i will think about it
 ## Todos 
 
 - [ ] Add install script to simplify the installation process
-
+- [ ] check why haskell-langue-server is not correct installed
+- [ ] configure vim-dadbod and vim-dadbod-ui prop. 
 
 ## What is the Purpose of this Repo
 
