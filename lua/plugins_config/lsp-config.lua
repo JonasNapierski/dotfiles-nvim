@@ -2,7 +2,7 @@ require("mason").setup()
 require("mason-lspconfig").setup()
 
 require("mason-lspconfig").setup {
-    ensure_installed = { "lua_ls", "rust_analyzer", "pylsp", "clangd" },
+    ensure_installed = { "lua_ls", "rust_analyzer", "pylsp", "clangd", "hls" },
 }
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -41,6 +41,11 @@ lspconfig.clangd.setup {
 
 lspconfig.pylsp.setup {
   capabilities=capabilities,
+}
+
+lspconfig.hls.setup {
+  capabilities=capabilities,
+  filetypes={'haskell', 'lhaskell', 'cabal'}
 }
 -- Keybindings
 vim.api.nvim_create_autocmd('LspAttach', {
