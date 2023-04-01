@@ -115,6 +115,12 @@ _G.packer_plugins = {
     path = "/home/joans/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
+  ["mongo-nvim"] = {
+    config = { "\27LJ\2\n<\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\15mongo-nvim\frequire\0" },
+    loaded = true,
+    path = "/home/joans/.local/share/nvim/site/pack/packer/start/mongo-nvim",
+    url = "https://github.com/thibthib18/mongo-nvim"
+  },
   ["nightfox.nvim"] = {
     loaded = true,
     path = "/home/joans/.local/share/nvim/site/pack/packer/start/nightfox.nvim",
@@ -145,10 +151,25 @@ _G.packer_plugins = {
     path = "/home/joans/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  pywal = {
+    loaded = true,
+    path = "/home/joans/.local/share/nvim/site/pack/packer/start/pywal",
+    url = "https://github.com/AlphaTechnolog/pywal.nvim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/joans/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["vim-dadbod"] = {
+    loaded = true,
+    path = "/home/joans/.local/share/nvim/site/pack/packer/start/vim-dadbod",
+    url = "https://github.com/tpope/vim-dadbod"
+  },
+  ["vim-dadbod-ui"] = {
+    loaded = true,
+    path = "/home/joans/.local/share/nvim/site/pack/packer/start/vim-dadbod-ui",
+    url = "https://github.com/kristijanhusak/vim-dadbod-ui"
   }
 }
 
@@ -157,6 +178,10 @@ time([[Defining packer_plugins]], false)
 time([[Config for glow.nvim]], true)
 try_loadstring("\27LJ\2\n2\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\tglow\frequire\0", "config", "glow.nvim")
 time([[Config for glow.nvim]], false)
+-- Config for: mongo-nvim
+time([[Config for mongo-nvim]], true)
+try_loadstring("\27LJ\2\n<\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\15mongo-nvim\frequire\0", "config", "mongo-nvim")
+time([[Config for mongo-nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
