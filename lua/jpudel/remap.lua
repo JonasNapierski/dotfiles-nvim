@@ -38,6 +38,8 @@ vim.keymap.set('n', 'Ö', '[', {remap = true, desc="Remap default [ to german Ö
 vim.keymap.set('n', 'Ä', ']', {remap = true, desc="Remap default ] to german Ä"})
 
 vim.keymap.set('n', 'ü', '/', {remap = true, desc="Remap default / to german ü (substitute)"})
+vim.keymap.set('n','^^','<del>', {remap = true, desc="Remap ^^ to delete the last one"})
+
 
 -- Add a descriptions to the keymap
 vim.keymap.set('n', 'I', 'I', {desc="Insert in line start"})
