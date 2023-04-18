@@ -39,7 +39,6 @@ Not realy intended but i will think about it
 ## Todos 
 
 - [ ] Add install script to simplify the installation process
-- [ ] check why haskell-langue-server is not correct installed
 - [ ] configure vim-dadbod and vim-dadbod-ui prop. 
 - [ ] Add support for autocompiling markdown files and open them with evince (a default pdf viewer for ubuntu)
 ## What is the Purpose of this Repo
