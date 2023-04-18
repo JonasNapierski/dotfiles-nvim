@@ -18,12 +18,8 @@ return require('packer').startup(function(use)
 	use 'nvim-lua/plenary.nvim'
   use { "catppuccin/nvim", as = "catppuccin" }
   use {"ellisonleao/glow.nvim", config = function() require("glow").setup() end}
-  use { 'thibthib18/mongo-nvim', rocks = {'lua-mongo'}, config=function()
-    require 'mongo-nvim'.setup({})
-  end}
   use {"kristijanhusak/vim-dadbod-ui"}
   use {"tpope/vim-dadbod"}
-  use {"AlphaTechnolog/pywal.nvim", as = 'pywal'}
 end)
 
 
