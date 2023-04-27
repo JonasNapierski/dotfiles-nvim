@@ -5,6 +5,17 @@ Hello, this is my "custom" nvim configuration. Currently it is mostly a replicao
 ## Installation
 Install `neovim` and `neovim.packer`
 
+## Arch
+```
+yay -S nvim-packer-git
+```
+
+## Other
+```
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+```
+
 ### Plugin Requirements:
 - Mason
   - install npm
