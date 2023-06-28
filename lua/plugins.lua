@@ -20,6 +20,11 @@ return require('packer').startup(function(use)
   use {"ellisonleao/glow.nvim", config = function() require("glow").setup() end}
   use {"kristijanhusak/vim-dadbod-ui"}
   use {"tpope/vim-dadbod"}
+  use {
+    "Ilyasyoy/coredor.nvim",
+  }
+  use "nvim-lua/plenary.nvim"
+  use "IlyasYOY/obs.nvim"
 end)
 
 
