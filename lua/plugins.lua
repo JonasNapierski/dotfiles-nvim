@@ -23,8 +23,9 @@ return require('packer').startup(function(use)
   use {
     "Ilyasyoy/coredor.nvim",
   }
-  use "nvim-lua/plenary.nvim"
-  use "IlyasYOY/obs.nvim"
+  use  {"epwalsh/obsidian.nvim"}
+  use "godlygeek/tabular"
+  use "preservim/vim-markdown"
 end)
 
 
