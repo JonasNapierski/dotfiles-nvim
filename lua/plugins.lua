@@ -20,6 +20,9 @@ return require('packer').startup(function(use)
   use {"ellisonleao/glow.nvim", config = function() require("glow").setup() end}
   use {"kristijanhusak/vim-dadbod-ui"}
   use {"tpope/vim-dadbod"}
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+  }
 end)
-
 
