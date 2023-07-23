@@ -13,4 +13,5 @@ set.expandtab = true
 set.number = true
 set.relativenumber = true
 
+set.splitright = true
 vim.cmd.colorscheme("carbonfox")
