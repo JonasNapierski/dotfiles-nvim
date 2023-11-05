@@ -39,7 +39,7 @@ Not realy intended but i will think about it
 - lua
 - c
 - python
-- (incomming) Rust
+- Rust
 - (incomming) JavaScript
 
 ## Structure
