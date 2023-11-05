@@ -8,6 +8,18 @@ require("mason-lspconfig").setup {
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lspconfig = require('lspconfig')
 
+
+local custom_on_attach = function (client, bufnr)
+  print('Language server' .. client.name .. ' is no attached')
+  print('Buffer number: ' .. bufnr)
+
+  local opts = { noremap = true, silent=true}
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+end
+
 lspconfig.lua_ls.setup {
   settings = {
     Lua = {
@@ -28,12 +40,12 @@ lspconfig.lua_ls.setup {
         enable = false,
       },
     },
-  },
-  capabilities=capabilities,
+  }
 }
-lspconfig.rust_analyzer.setup {
-	capabilities=capabilities,
-}
+lspconfig.rust_analyzer.setup({
+    on_attach = custom_on_attach,
+    capabilities = capabilities
+})
 
 lspconfig.clangd.setup {
   capabilities=capabilities,
@@ -46,6 +58,8 @@ lspconfig.pylsp.setup {
 lspconfig.jdtls.setup{
   capabilities=capabilities,
 }
+
+
 -- Keybindings
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'LSP actions',
