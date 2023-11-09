@@ -2,7 +2,7 @@ require("mason").setup()
 require("mason-lspconfig").setup()
 
 require("mason-lspconfig").setup {
-    ensure_installed = { "lua_ls", "rust_analyzer", "pylsp", "clangd", "jdtls"},
+    ensure_installed = { "lua_ls", "rust_analyzer", "pylsp", "clangd", "jdtls", "csharp_ls"},
 }
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -45,6 +45,11 @@ lspconfig.lua_ls.setup {
 lspconfig.rust_analyzer.setup({
     on_attach = custom_on_attach,
     capabilities = capabilities
+})
+
+lspconfig.csharp_ls.setup({
+  on_attach = custom_on_attach,
+  capabilities = capabilities
 })
 
 lspconfig.clangd.setup {
