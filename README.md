@@ -16,23 +16,6 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 ```
 
-### Plugin Requirements:
-- Mason
-  - install npm
-
-1. Install neovim & neovim-packer
-2. Start clone this repo into `~./config/` and replace the folder `nvim` with the repo.
-3. Start nvim
-4. inside nvim ignore the errors and run `PackerSync`
-5. restart nvim
-6. Finish!
-
-Everything else will be handle by Packer or Npm
-
-## Contribute
-
-Not realy intended but i will think about it 
-
 
 ## Supported Languages
 

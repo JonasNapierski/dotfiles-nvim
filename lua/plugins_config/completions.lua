@@ -16,8 +16,6 @@ cmp.setup({
 	},
 	sources = cmp.config.sources({
 		{ name =  'nvim_lsp'},
-    { name = 'rust_analyzer'},
-		{ name =  'luasnip'},
 	},
   {
 		{ name = 'buffer'},
