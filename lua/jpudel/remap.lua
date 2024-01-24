@@ -3,7 +3,6 @@
 vim.g.mapleader = 't'
 vim.g.maplocalleader = 't'
 
-
 -- ---------------------------- Insert Mode ----------------------------
 --  ## Brackets
 vim.keymap.set('i', '(','()<left>',{desc="Auto Close () Brackets"})
@@ -58,4 +57,3 @@ vim.keymap.set('v', 'ä', '}', {remap = true, desc="Remap default } to german ä
 vim.keymap.set('v', 'Ö', '[', {remap = true, desc="Remap default [ to german Ö"})
 vim.keymap.set('v', 'Ä', ']', {remap = true, desc="Remap default ] to german Ä"})
 
-vim.keymap.set('n', '<leader>n', ':Neotree toggle<cr>', {remap = true, desc="toggle tree view"})

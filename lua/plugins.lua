@@ -8,5 +8,6 @@ return require('packer').startup(function(use)
     'nvim-telescope/telescope.nvim',
     'nvim-lua/plenary.nvim'
   }
+  use "mfussenegger/nvim-lsp-compl"
 end)
 

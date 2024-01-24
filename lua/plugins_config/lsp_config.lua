@@ -1,9 +1,9 @@
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { "lua_ls", "" }
+  ensure_installed = { "lua_ls", "pylsp" }
 })
 
-local on_attach = function(_, _)
+local on_attach = function(client, bufnr)
 
   -- rename and code_action
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
@@ -17,18 +17,33 @@ local on_attach = function(_, _)
 
   -- Show diagnostics in floating window
   vim.keymap.set('n', 'gl', vim.diagnostic.open_float, {desc="Open Diagnostic window"})
+
+  vim.keymap.set('i', '<c-space>', require('lsp_compl').trigger_completion(), {desc="Trigger auto completion"})
+
+  if client.server_capabilities.signatureHelpProvider then
+    client.server_capabilities.signatureHelpProvider.triggerCharacters = {}
+  end
+  
+  require('lsp_compl').attach(client, bufnr, {
+    server_side_fuzzy_completion = true
+  })
 end
 
 local lspconfig = require('lspconfig')
 
 lspconfig.lua_ls.setup {
   on_attach = on_attach,
+  capabilities = vim.tbl_deep_extend(
+    'force',
+    vim.lsp.protocol.make_client_capabilities(),
+    require('lsp_compl').capabilities()
+  ),
   settings = {
     diagnostics = {
       globals = {'vim'},
     },
     workspace = {
-      library = vim.api.nvim_get_runtime_file("", true)
+      library = vim.api.nvim_get_runtime_file("lua", true)
     },
     telementry = {
       enable = false,
