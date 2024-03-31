@@ -2,7 +2,7 @@ require("mason").setup()
 require("mason-lspconfig").setup()
 
 require("mason-lspconfig").setup {
-    ensure_installed = { "lua_ls", "rust_analyzer", "pylsp", "clangd", "jdtls", "csharp_ls"},
+    ensure_installed = { "lua_ls", "rust_analyzer", "pylsp", "clangd", "jdtls", "html", "typescript-language-server"},
 }
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -14,6 +14,10 @@ local custom_on_attach = function (client, bufnr)
   print('Buffer number: ' .. bufnr)
 
   local opts = { noremap = true, silent=true}
+
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>i', '<Cmd>lua vim.buf.lsp.code_action()<CR>', opts)
+
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<Cmd>lua vim.lsp.buf.rename()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
@@ -42,6 +46,7 @@ lspconfig.lua_ls.setup {
     },
   }
 }
+
 lspconfig.rust_analyzer.setup({
     on_attach = custom_on_attach,
     capabilities = capabilities
@@ -53,6 +58,7 @@ lspconfig.csharp_ls.setup({
 })
 
 lspconfig.clangd.setup {
+  on_attach=custom_on_attach,
   capabilities=capabilities,
 }
 
@@ -62,9 +68,19 @@ lspconfig.pylsp.setup {
 }
 
 lspconfig.jdtls.setup{
+  on_attach=custom_on_attach,
   capabilities=capabilities,
 }
 
+lspconfig.html.setup{
+  on_attach=custom_on_attach,
+  capabilities=capabilities,
+}
+
+lspconfig.tsserver.setup {
+  on_attach=custom_on_attach,
+  capabilities=capabilities,
+}
 
 -- Keybindings
 vim.api.nvim_create_autocmd('LspAttach', {
