@@ -57,7 +57,8 @@ lspconfig.clangd.setup {
 }
 
 lspconfig.pylsp.setup {
-  capabilities=capabilities,
+  on_attach = custom_on_attach,
+  capabilities=capabilities
 }
 
 lspconfig.jdtls.setup{
