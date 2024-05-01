@@ -17,6 +17,8 @@ vim.keymap.set('i', '`','``<left>',{desc="Auto Close `` Quotes"})
 -- ---------------------------- Normal Mode ----------------------------
 vim.keymap.set("n", "<leader>pv",vim.cmd.Ex, {desc="Open file explorer"})
 
+-- Neotree
+vim.keymap.set('n', '<leader>#', 'Neotree<cr>', {desc="Toggle Neotree"})
 -- Set toggle  for what was searched
 vim.keymap.set('n', '<c-h>',':set hlsearch!<cr>', {desc="Toggle hide/show search term"})
 vim.keymap.set('n', '<leader>s',':w<cr>', {desc="Saves the currently open file"})

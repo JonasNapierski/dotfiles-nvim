@@ -1,0 +1,12 @@
+{
+  "languageserver": {
+    "lua": {
+      "command": "lua-language-server",
+      "filetypes": ["lua"]
+    },
+    "systemd-language-server": {
+          "command": "systemd-language-server",
+          "filetypes": ["systemd"]
+        }
+  }
+}
