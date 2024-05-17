@@ -8,5 +8,9 @@
           "command": "systemd-language-server",
           "filetypes": ["systemd"]
         }
+    "clangd": {
+      "command": "clangd",
+      "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcc"]
+    }
   }
 }
