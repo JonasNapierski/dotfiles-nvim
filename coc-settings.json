@@ -7,6 +7,14 @@
     "systemd-language-server": {
           "command": "systemd-language-server",
           "filetypes": ["systemd"]
-        }
-  }
+    },
+    "csharp": {
+      "command": "csharp-ls",
+      "rootPatterns": [
+        "*.sln",
+        "git"
+      ],
+      "filetypes": ["cs", "csharp"]
+    }
+  },
 }

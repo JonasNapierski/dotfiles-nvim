@@ -5,16 +5,16 @@ require("plugins_config")
 local set = vim.opt
 
 -- set the behavior of tab
-set.tabstop = 2
-set.shiftwidth = 2
-set.softtabstop = 2
+set.tabstop = 4
+set.shiftwidth = 4
+set.softtabstop = 4
 set.expandtab = true
 
 set.number = true
 set.relativenumber = true
 
 set.splitright = true
-vim.cmd.colorscheme("catppuccin-latte")
+vim.cmd.colorscheme("catppuccin-mocha")
 
 -- disable back from lsp server
 vim.opt.backup = false
@@ -24,14 +24,9 @@ vim.opt.signcolumn = "yes"
 
 local keyset = vim.keymap.set
 
--- Autocomplete
-function _G.check_back_space()
-  local col = vim.fn.col('.') - 1
-  return col == 0 or vim.fn.getline('.'):sub(col,col):match('%s') ~= nil
-end
+vim.api.nvim_command('inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\\<CR>"')
 
 local opts = {silent = true, noremap = true, expr = true, replace_keycodes = false}
-keyset('i', "<TAB>", 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', opts)
 keyset("i", "<S-TAB>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
 keyset("i", "<c-j>", "<Plug>(coc-snippets-expand-jump)")
 -- Use <c-space> to trigger completion
