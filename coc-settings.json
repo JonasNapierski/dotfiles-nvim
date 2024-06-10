@@ -15,6 +15,10 @@
         "git"
       ],
       "filetypes": ["cs", "csharp"]
+    },
+    "clangd": {
+      "command": "clangd",
+      "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcc"]
     }
-  },
+  }
 }
