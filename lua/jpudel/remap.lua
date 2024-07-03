@@ -5,7 +5,7 @@ vim.g.maplocalleader = 't'
 
 -- ---------------------------- Normal Mode ----------------------------
 vim.keymap.set("n", "<leader>pv",vim.cmd.Ex, {desc="Open file explorer"})
-
+vim.keymap.set("n", "<leader>u", ":call CocActionAsync('codeAction','cursor')<cr>", {desc="CodeAction"})
 -- Neotree
 vim.keymap.set('n', '<leader>#', 'Neotree<cr>', {desc="Toggle Neotree"})
 -- Set toggle  for what was searched
