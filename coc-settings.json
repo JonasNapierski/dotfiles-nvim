@@ -20,5 +20,6 @@
       "command": "clangd",
       "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcc"]
     }
-  }
+  },
+  "snippets.ultisnips.pythonPrompt": false
 }
