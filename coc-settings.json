@@ -14,7 +14,7 @@
         "*.sln",
         "git"
       ],
-      "filetypes": ["cs", "csharp"]
+      "filetypes": ["cs", "csharp", "xaml.cs"]
     },
     "clangd": {
       "command": "clangd",
