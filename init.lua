@@ -20,6 +20,7 @@ vim.cmd.colorscheme("catppuccin-mocha")
 vim.opt.backup = false
 vim.opt.writebackup = false
 
+
 vim.opt.signcolumn = "yes"
 
 local keyset = vim.keymap.set
@@ -60,6 +61,8 @@ vim.api.nvim_create_autocmd("CursorHold", {
     command = "silent call CocActionAsync('highlight')",
     desc = "Highlight symbol under cursor on CursorHold"
 })
+
+
 
 
 -- Symbol renaming

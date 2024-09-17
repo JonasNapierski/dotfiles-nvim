@@ -18,6 +18,7 @@ return require('packer').startup(function(use)
     use    {"epwalsh/obsidian.nvim"}
     use "godlygeek/tabular"
     use "preservim/vim-markdown"
+    use { 'nvim-treesitter/nvim-treesitter' }
     use {
     "nvim-neo-tree/neo-tree.nvim",
         branch = "v3.x",
@@ -29,9 +30,5 @@ return require('packer').startup(function(use)
         }
     }
     use {'neoclide/coc.nvim', branch = 'release'}
-    use {
-            "vinnymeller/swagger-preview.nvim",
-            run = "npm install -g swagger-ui-watcher",
-    }
 end)
 

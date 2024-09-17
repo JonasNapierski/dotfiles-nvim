@@ -1,7 +1,7 @@
 {
   "languageserver": {
     "lua": {
-      "command": "lua-language-server",
+      "command": "coc-lua",
       "filetypes": ["lua"]
     },
     "systemd-language-server": {
@@ -12,6 +12,7 @@
       "command": "csharp-ls",
       "rootPatterns": [
         "*.sln",
+        ".csproj",
         "git"
       ],
       "filetypes": ["cs", "csharp", "xaml.cs"]
@@ -19,6 +20,12 @@
     "clangd": {
       "command": "clangd",
       "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcc"]
+    },
+    "avalonia": {
+      "command": "dotnet",
+      "args": ["~/.var/app/com.visualstudio.code/data/vscode/extensions/avaloniateam.vscode-avalonia-0.0.31/avaloniaServer/AvaloniaLanguageServer.dll"],
+      "filetypes": ["axaml"],
+      "rootPatterns": [".git",".csproj"]
     }
   },
   "snippets.ultisnips.pythonPrompt": false
