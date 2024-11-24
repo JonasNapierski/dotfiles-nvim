@@ -3,6 +3,8 @@
 vim.g.mapleader = 't'
 vim.g.maplocalleader = 't'
 
+-- ---------------------------- Build C ----------------------------
+vim.keymap.set("n", "<leader>pb","!make", {desc="Build project"})
 -- ---------------------------- Normal Mode ----------------------------
 vim.keymap.set("n", "<leader>pv",vim.cmd.Ex, {desc="Open file explorer"})
 vim.keymap.set("n", "<leader>u", ":call CocActionAsync('codeAction','cursor')<cr>", {desc="CodeAction"})
