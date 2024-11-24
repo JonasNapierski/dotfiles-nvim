@@ -33,5 +33,6 @@ return require('packer').startup(function(use)
             "vinnymeller/swagger-preview.nvim",
             run = "npm install -g swagger-ui-watcher",
     }
+    use "mfussenegger/nvim-dap"
 end)
 
