@@ -1,5 +1,5 @@
--- require('plugins_config.lsp-config')
--- require('plugins_config.completions')
 require('plugins_config.telescope')
 require('plugins_config.lualine')
 require('plugins_config.dap')
+require('plugins_config.tree-sitter')
+require('plugins_config.neo-tree')

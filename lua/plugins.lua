@@ -18,6 +18,7 @@ return require('packer').startup(function(use)
     use    {"epwalsh/obsidian.nvim"}
     use "godlygeek/tabular"
     use "preservim/vim-markdown"
+    use { 'nvim-treesitter/nvim-treesitter' }
     use {
     "nvim-neo-tree/neo-tree.nvim",
         branch = "v3.x",
