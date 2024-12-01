@@ -14,7 +14,8 @@ set.number = true
 set.relativenumber = true
 
 set.splitright = true
-vim.cmd.colorscheme("catppuccin-mocha")
+vim.cmd.colorscheme("oxocarbon")
+vim.opt.background = "dark"
 
 -- disable back from lsp server
 vim.opt.backup = false

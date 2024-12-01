@@ -35,5 +35,6 @@ return require('packer').startup(function(use)
             run = "npm install -g swagger-ui-watcher",
     }
     use "mfussenegger/nvim-dap"
+    use "nyoom-engineering/oxocarbon.nvim"
 end)
 
