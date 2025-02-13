@@ -14,11 +14,13 @@ set.number = true
 set.relativenumber = true
 
 set.splitright = true
-vim.cmd.colorscheme("catppuccin-mocha")
+vim.cmd.colorscheme("oxocarbon")
+vim.opt.background = "dark"
 
 -- disable back from lsp server
 vim.opt.backup = false
 vim.opt.writebackup = false
+
 
 vim.opt.signcolumn = "yes"
 
@@ -60,6 +62,8 @@ vim.api.nvim_create_autocmd("CursorHold", {
     command = "silent call CocActionAsync('highlight')",
     desc = "Highlight symbol under cursor on CursorHold"
 })
+
+
 
 
 -- Symbol renaming
