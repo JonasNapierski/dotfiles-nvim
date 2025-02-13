@@ -1,25 +1,29 @@
 {
-  "languageserver": {
-    "lua": {
-      "command": "lua-language-server",
-      "filetypes": ["lua"]
+    "languageserver": {
+        "lua": {
+            "command": "lua-language-server",
+            "filetypes": ["lua"]
+        },
+        "systemd-language-server": {
+            "command": "systemd-language-server",
+            "filetypes": ["systemd"]
+        },
+        "csharp": {
+            "command": "csharp-ls",
+            "rootPatterns": [
+                "*.sln",
+                "git"
+            ],
+            "filetypes": ["cs", "csharp", "xaml.cs"]
+        },
+        "clangd": {
+            "command": "clangd",
+            "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcc"]
+        },
+        "kotlin": {
+            "command": "~/.config/lsp/kotlin/server/bin/kotlin-language-server",
+            "filetypes": ["kotlin", "kt"]
+        }
     },
-    "systemd-language-server": {
-          "command": "systemd-language-server",
-          "filetypes": ["systemd"]
-    },
-    "csharp": {
-      "command": "csharp-ls",
-      "rootPatterns": [
-        "*.sln",
-        "git"
-      ],
-      "filetypes": ["cs", "csharp", "xaml.cs"]
-    },
-    "clangd": {
-      "command": "clangd",
-      "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcc"]
-    }
-  },
-  "snippets.ultisnips.pythonPrompt": false
+    "snippets.ultisnips.pythonPrompt": false
 }

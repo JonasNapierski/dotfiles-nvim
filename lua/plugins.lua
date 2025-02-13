@@ -15,7 +15,7 @@ return require('packer').startup(function(use)
     use    {
         "Ilyasyoy/coredor.nvim",
     }
-    use    {"epwalsh/obsidian.nvim"}
+    use "epwalsh/obsidian.nvim"
     use "godlygeek/tabular"
     use "preservim/vim-markdown"
     use {
@@ -28,6 +28,7 @@ return require('packer').startup(function(use)
             "3rd/image.nvim",
         }
     }
+    use 'udalov/kotlin-vim'
     use {'neoclide/coc.nvim', branch = 'release'}
     use {
             "vinnymeller/swagger-preview.nvim",
