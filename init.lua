@@ -21,5 +21,4 @@ vim.opt.background = "dark"
 vim.opt.backup = false
 vim.opt.writebackup = false
 
-
 vim.opt.signcolumn = "yes"

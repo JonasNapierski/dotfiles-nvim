@@ -22,7 +22,7 @@ dap.adapters.codelldb = {
 
 dap.adapters.coreclr = {
   type = 'executable',
-  command = '/usr/local/bin/netcoredbg/netcoredbg',
+  command = 'netcoredbg',
   args = {'--interpreter=vscode'}
 }
 
