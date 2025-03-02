@@ -1,5 +1,13 @@
 return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
+    use {
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+        "neovim/nvim-lspconfig",
+        "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/nvim-cmp",
+        "folke/lazydev.nvim"
+    }
     use 'nvim-telescope/telescope.nvim'
     use 'nvim-lua/plenary.nvim'
     use {
@@ -29,14 +37,13 @@ return require('packer').startup(function(use)
             "3rd/image.nvim",
         }
     }
-    use 'udalov/kotlin-vim'
-    use {'neoclide/coc.nvim', branch = 'release'}
+    -- use {'neoclide/coc.nvim', branch = 'release', cond = false}
     use {
             "vinnymeller/swagger-preview.nvim",
             run = "npm install -g swagger-ui-watcher",
     }
     use "mfussenegger/nvim-dap"
-    use 'Mgenuit/nvim-dap-kotlin'
+    use {'olisikh/nvim-dap-kotlin', branch = 'main' }
     use {
         "rcarriga/nvim-dap-ui",
         requires = {

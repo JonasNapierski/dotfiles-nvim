@@ -1,7 +1,14 @@
 local dap = require('dap')
 local dapui = require("dapui")
+local kotlin = require('dap-kotlin')
 
 dapui.setup()
+kotlin.setup({
+    dap_command = "kotlin-debug-adapter",
+    project_root = "${workspaceFolder}",
+    enable_logging = false,
+    log_file_path = "",
+})
 
 dap.adapters.codelldb = {
   type = 'server',
@@ -20,6 +27,8 @@ dap.adapters.coreclr = {
   command = '/usr/local/bin/netcoredbg/netcoredbg',
   args = {'--interpreter=vscode'}
 }
+
+
 
 dap.configurations.cpp = {
   {
@@ -46,10 +55,6 @@ dap.configurations.cs = {
     end,
   },
 }
-
-
-
-
 
 dap.listeners.before.attach.dapui_config = function()
     dapui.open()

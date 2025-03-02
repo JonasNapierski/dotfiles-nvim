@@ -2,7 +2,8 @@
     "languageserver": {
         "lua": {
             "command": "lua-language-server",
-            "filetypes": ["lua"]
+            "filetypes": ["lua"],
+	    "enable": false
         },
         "systemd-language-server": {
             "command": "systemd-language-server",
