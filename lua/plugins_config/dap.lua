@@ -17,8 +17,6 @@ dap.adapters.codelldb = {
     command = '/usr/bin/codelldb',
     args = {"--port", "13000"},
 
-    -- On windows you may have to uncomment this:
-    -- detached = false,
   }
 }
 
@@ -207,3 +205,5 @@ vim.keymap.set('n','<Leader>dn',
         desc="[DEBUGGER] open ui"
     }
 )
+
+vim.fn.sign_define('DapBreakpoint', {text='B', texthl='red', linehl='red', numhl='red'})
