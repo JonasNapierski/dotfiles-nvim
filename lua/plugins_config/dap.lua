@@ -1,20 +1,12 @@
 local dap = require('dap')
 local dapui = require("dapui")
-local kotlin = require('dap-kotlin')
 
 dapui.setup()
-kotlin.setup({
-    dap_command = "kotlin-debug-adapter",
-    project_root = "${workspaceFolder}",
-    enable_logging = false,
-    log_file_path = "",
-})
-
 dap.adapters.codelldb = {
   type = 'server',
   port = "13000",
   executable = {
-    command = '/usr/bin/codelldb',
+    command = 'codelldb',
     args = {"--port", "13000"},
 
   }

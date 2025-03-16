@@ -16,7 +16,8 @@ require'cmp'.setup {
 local mason_lspconfig = require("mason-lspconfig")
 local lspconfig = require("lspconfig")
 
-
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 
 mason_lspconfig.setup{}
@@ -65,7 +66,11 @@ lspconfig.lua_ls.setup({
 lspconfig.cmake.setup{}
 lspconfig.basedpyright.setup{}
 lspconfig.jsonls.setup{}
-
+lspconfig.html.setup{
+    apabilities = capabilities,
+}
+lspconfig.cssls.setup{}
+-- lspconfig.emmet_language_server.setup{}
 
 
 local cmp = require 'cmp'
