@@ -22,6 +22,9 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 mason_lspconfig.setup{}
 
+vim.g.markdown_fenced_languages = {
+    "ts=typescript"
+}
 
 local on_attach = function(client, bufnr)
     local opts_buffer = { noremap = true, silent = true, buffer = bufnr }
@@ -70,7 +73,15 @@ lspconfig.html.setup{
     apabilities = capabilities,
 }
 lspconfig.cssls.setup{}
--- lspconfig.emmet_language_server.setup{}
+lspconfig.hyprls.setup{}
+lspconfig.csharp_ls.setup{}
+lspconfig.systemd_ls.setup{}
+
+lspconfig.denols.setup {
+  on_attach = on_attach,
+  root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "tsconfig.json"),
+}
+-- spconfig.emmet_language_server.setup{}
 
 
 local cmp = require 'cmp'
