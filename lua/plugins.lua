@@ -8,6 +8,7 @@ return require('packer').startup(function(use)
         "hrsh7th/nvim-cmp",
         "folke/lazydev.nvim"
     }
+    use "eero-lehtinen/oklch-color-picker.nvim"
     use 'nvim-telescope/telescope.nvim'
     use 'nvim-lua/plenary.nvim'
     use {
