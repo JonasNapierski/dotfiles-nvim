@@ -74,8 +74,34 @@ lspconfig.html.setup{
 }
 lspconfig.cssls.setup{}
 lspconfig.hyprls.setup{}
-lspconfig.csharp_ls.setup{}
-lspconfig.systemd_ls.setup{}
+
+lspconfig.omnisharp.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+
+local configs = require 'lspconfig.configs'
+
+if not configs.systemd_ls then
+  configs.systemd_ls = {
+    default_config = {
+      cmd = { 'systemd-language-server' },
+      filetypes = { 'systemd' },
+      root_dir = function() return nil end,
+      single_file_support = true,
+      settings = {},
+    },
+    docs = {
+      description = [[
+https://github.com/psacawa/systemd-language-server
+
+Language Server for Systemd unit files.
+]]
+    }
+  }
+end
+
+lspconfig.systemd_ls.setup {}
 
 lspconfig.denols.setup {
   on_attach = on_attach,
