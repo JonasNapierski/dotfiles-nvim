@@ -19,7 +19,6 @@ local lspconfig = require("lspconfig")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-
 mason_lspconfig.setup{}
 
 vim.g.markdown_fenced_languages = {
@@ -64,8 +63,20 @@ lspconfig.clangd.setup({
 lspconfig.kotlin_language_server.setup{}
 lspconfig.lua_ls.setup({
     on_attach = on_attach,
-    flags = lsp_flags
+    flags = lsp_flags,
+    settings = {
+        Lua = {
+            workspace = {
+                checkThirdParty = false,
+                library = {
+                    vim.env.VIMRUNTIME
+                }
+            }
+        }
+
+    }
 })
+
 lspconfig.cmake.setup{}
 lspconfig.basedpyright.setup{}
 lspconfig.jsonls.setup{}
