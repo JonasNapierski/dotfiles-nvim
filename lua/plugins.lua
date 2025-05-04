@@ -53,5 +53,6 @@ return require('packer').startup(function(use)
         }
     }
     use "nyoom-engineering/oxocarbon.nvim"
+    use "~/dev/template.nvim"
 end)
 
