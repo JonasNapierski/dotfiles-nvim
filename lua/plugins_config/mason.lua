@@ -1,3 +1,7 @@
+local mason_lspconfig = require("mason-lspconfig")
+local lspconfig = require("lspconfig")
+local configs = require 'lspconfig.configs'
+
 require("mason").setup({
     ui = {
         icons = {
@@ -13,8 +17,6 @@ require'cmp'.setup {
   }
 }
 
-local mason_lspconfig = require("mason-lspconfig")
-local lspconfig = require("lspconfig")
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -81,7 +83,7 @@ lspconfig.cmake.setup{}
 lspconfig.basedpyright.setup{}
 lspconfig.jsonls.setup{}
 lspconfig.html.setup{
-    apabilities = capabilities,
+    capabilities = capabilities,
 }
 lspconfig.cssls.setup{}
 lspconfig.hyprls.setup{}
@@ -91,7 +93,6 @@ lspconfig.omnisharp.setup {
     capabilities = capabilities,
 }
 
-local configs = require 'lspconfig.configs'
 
 if not configs.systemd_ls then
   configs.systemd_ls = {
@@ -118,7 +119,22 @@ lspconfig.denols.setup {
   on_attach = on_attach,
   root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "tsconfig.json"),
 }
--- spconfig.emmet_language_server.setup{}
+
+vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
+	pattern = { "*.axaml" },
+	callback = function(event)
+		vim.lsp.start {
+			name = "avalonia",
+			cmd = { "avalonia-ls" },
+			root_dir = vim.fn.getcwd(),
+		}
+	end
+})
+vim.filetype.add({
+	extension = {
+		axaml = "xml",
+	},
+})
 
 
 local cmp = require 'cmp'
