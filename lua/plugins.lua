@@ -14,6 +14,7 @@ return require('packer').startup(function(use)
     use {
         "catppuccin/nvim",
         as = "catppuccin" }
+    use "FabijanZulj/blame.nvim"
     use {
         'nvim-lualine/lualine.nvim',
         requires = {
