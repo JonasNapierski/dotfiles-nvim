@@ -1,14 +1,4 @@
--- Optional: Enable Mason UI icons
-require("mason").setup({
-    ui = {
-        icons = {
-            package_installed = "✓",
-            package_pending = "➜",
-            package_uninstalled = "✗"
-        }
-    }
-})
-
+--
 -- Capabilities for completion
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
@@ -16,7 +6,6 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local on_attach = function(client, bufnr)
     local opts = { noremap = true, silent = true, buffer = bufnr }
 
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
@@ -24,8 +13,26 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
     vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
     vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+    vim.keymap.set('n', '<c-s>', vim.lsp.buf.signature_help, opts)
     vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format({ async = true }) end, opts)
+
+    -- open ups completion menu
+    vim.keymap.set('i', '<c-space>', function()
+        vim.lsp.completion.get()
+    end)
 end
+
+vim.api.nvim_create_autocmd('LspAttach', {
+    group = vim.api.nvim_create_augroup('my.lsp', {}),
+    callback = function(args)
+        local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+        if client:supports_method('textDocument/completion') then
+            vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true})
+        end
+    end,
+})
+
+vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
 
 -- Use `vim.lsp.config` to configure servers BEFORE mason-lspconfig sets them up
 vim.lsp.config.clangd = {
@@ -79,33 +86,20 @@ vim.lsp.config.tsserver = {
     end,
     capabilities = capabilities,
 }
+vim.lsp.basedpyright = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
 
--- Manually configure systemd_ls (not in mason)
-local configs = require("lspconfig.configs")
-if not configs.systemd_ls then
-    configs.systemd_ls = {
-        default_config = {
-            cmd = { "systemd-language-server" },
-            filetypes = { "systemd" },
-            root_dir = function() return nil end,
-            single_file_support = true,
-        },
-        docs = {
-            description = "https://github.com/psacawa/systemd-language-server",
-        },
+require("mason").setup({
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        }
     }
-end
-require("lspconfig").systemd_ls.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-})
-
--- Manually configure basedpyright (still not auto-installed)
-require("lspconfig").basedpyright.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
 })
 
 -- Init mason and mason-lspconfig LAST
 require("mason-lspconfig").setup()
-
