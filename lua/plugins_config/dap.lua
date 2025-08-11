@@ -198,4 +198,4 @@ vim.keymap.set('n','<Leader>dn',
     }
 )
 
-vim.fn.sign_define('DapBreakpoint', {text='B', texthl='red', linehl='red', numhl='red'})
+vim.fn.sign_define('DapBreakpoint', {text='', texthl='RedrawDebugRecompose', linehl='RedrawDebugRecompose', numhl='RedrawDebugRecompose'})
