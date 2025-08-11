@@ -1,6 +1,106 @@
-local mason_lspconfig = require("mason-lspconfig")
-local lspconfig = require("lspconfig")
-local configs = require 'lspconfig.configs'
+-- Capabilities for completion
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+-- Common on_attach function
+local on_attach = function(client, bufnr)
+    local opts = { noremap = true, silent = true, buffer = bufnr }
+
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+    vim.keymap.set('n', '<c-s>', vim.lsp.buf.signature_help, opts)
+    vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format({ async = true }) end, opts)
+
+
+    vim.keymap.set('i', '<Tab>', function()
+        return vim.fn.pumvisible() == 1 and "<C-n>" or "<Tab>"
+    end, { expr = true })
+
+    vim.keymap.set('i', '<S-Tab>', function()
+        return vim.fn.pumvisible() == 1 and "<C-p>" or "<S-Tab>"
+    end, { expr = true })
+
+    vim.keymap.set('i', '<CR>', function()
+        return vim.fn.pumvisible() == 1 and "<C-y>" or "<CR>"
+    end, { expr = true })
+
+    vim.keymap.set('i', '<c-space>', function()
+        vim.lsp.completion.get()
+    end)
+
+end
+
+vim.api.nvim_create_autocmd('LspAttach', {
+    group = vim.api.nvim_create_augroup('my.lsp', {}),
+    callback = function(args)
+        local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+        if client:supports_method('textDocument/completion') then
+            vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true})
+        end
+    end,
+})
+
+vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
+
+
+-- Use `vim.lsp.config` to configure servers BEFORE mason-lspconfig sets them up
+vim.lsp.config.clangd = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+vim.lsp.config.kotlin_language_server = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+vim.lsp.config.lua_ls = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+        Lua = {
+            workspace = {
+                checkThirdParty = false,
+                library = { vim.env.VIMRUNTIME }
+            }
+        }
+    }
+}
+
+vim.lsp.config.cmake = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+vim.lsp.config.jsonls = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+vim.lsp.config.html = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+vim.lsp.config.cssls = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+vim.lsp.config.hyprls = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+vim.lsp.config.omnisharp = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+vim.lsp.config.ts_ls = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+vim.lsp.config.basedpyright = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
 
 require("mason").setup({
     ui = {
@@ -11,161 +111,6 @@ require("mason").setup({
         }
     }
 })
-require'cmp'.setup {
-  sources = {
-    { name = 'nvim_lsp' }
-  }
-}
 
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-mason_lspconfig.setup{}
-
-vim.g.markdown_fenced_languages = {
-    "ts=typescript"
-}
-
-local on_attach = function(client, bufnr)
-    local opts_buffer = { noremap = true, silent = true, buffer = bufnr }
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-    -- Mappings: LSP
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, opts_buffer)
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts_buffer)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts_buffer)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts_buffer)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts_buffer)
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts_buffer)
-    vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts_buffer)
-    vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts_buffer)
-    vim.keymap.set('n', '<space>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, opts_buffer)
-    vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts_buffer)
-    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts_buffer)
-    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts_buffer)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts_buffer)
-    vim.keymap.set('n', '<leader>f', '<cmd>lua vim.lsp.buf.format({ async = true })<CR>', opts_buffer)
-end
-
-local opts = { noremap = true, silent = true }
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
-
-local lsp_flags = {
-    debounce_text_changes = 150,
-}
-lspconfig.clangd.setup({
-    on_attach = on_attach,
-    flags = lsp_flags,
-})
-
-lspconfig.kotlin_language_server.setup{}
-lspconfig.lua_ls.setup({
-    on_attach = on_attach,
-    flags = lsp_flags,
-    settings = {
-        Lua = {
-            workspace = {
-                checkThirdParty = false,
-                library = {
-                    vim.env.VIMRUNTIME
-                }
-            }
-        }
-
-    }
-})
-
-lspconfig.cmake.setup{}
-lspconfig.basedpyright.setup{}
-lspconfig.jsonls.setup{}
-lspconfig.html.setup{
-    capabilities = capabilities,
-}
-lspconfig.cssls.setup{}
-lspconfig.hyprls.setup{}
-
-lspconfig.omnisharp.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
-
-if not configs.systemd_ls then
-  configs.systemd_ls = {
-    default_config = {
-      cmd = { 'systemd-language-server' },
-      filetypes = { 'systemd' },
-      root_dir = function() return nil end,
-      single_file_support = true,
-      settings = {},
-    },
-    docs = {
-      description = [[
-https://github.com/psacawa/systemd-language-server
-
-Language Server for Systemd unit files.
-]]
-    }
-  }
-end
-
-lspconfig.systemd_ls.setup {}
-
-lspconfig.denols.setup {
-  on_attach = on_attach,
-  root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "tsconfig.json"),
-}
-
-vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
-	pattern = { "*.axaml" },
-	callback = function(event)
-		vim.lsp.start {
-			name = "avalonia",
-			cmd = { "avalonia-ls" },
-			root_dir = vim.fn.getcwd(),
-		}
-	end
-})
-vim.filetype.add({
-	extension = {
-		axaml = "xml",
-	},
-})
-
-
-local cmp = require 'cmp'
-cmp.setup {
-  snippet = {
-  },
-  mapping = cmp.mapping.preset.insert({
-    ['<C-u>'] = cmp.mapping.scroll_docs(-4), -- Up
-    ['<C-d>'] = cmp.mapping.scroll_docs(4), -- Down
-    -- C-b (back) C-f (forward) for snippet placeholder navigation.
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    },
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-  }),
-  sources = {
-    { name = 'nvim_lsp' },
-  },
-}
+-- Init mason and mason-lspconfig LAST
+require("mason-lspconfig").setup()

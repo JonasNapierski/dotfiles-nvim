@@ -14,6 +14,7 @@ return require('packer').startup(function(use)
     use {
         "catppuccin/nvim",
         as = "catppuccin" }
+    use "FabijanZulj/blame.nvim"
     use {
         'nvim-lualine/lualine.nvim',
         requires = {
@@ -24,12 +25,11 @@ return require('packer').startup(function(use)
     use    {
         "Ilyasyoy/coredor.nvim",
     }
-    use "epwalsh/obsidian.nvim"
     use "godlygeek/tabular"
     use "preservim/vim-markdown"
     use { 'nvim-treesitter/nvim-treesitter' }
     use {
-    "nvim-neo-tree/neo-tree.nvim",
+        "nvim-neo-tree/neo-tree.nvim",
         branch = "v3.x",
         requires = {
             "nvim-lua/plenary.nvim",
@@ -38,13 +38,7 @@ return require('packer').startup(function(use)
             "3rd/image.nvim",
         }
     }
-    -- use {'neoclide/coc.nvim', branch = 'release', cond = false}
-    use {
-            "vinnymeller/swagger-preview.nvim",
-            run = "npm install -g swagger-ui-watcher",
-    }
     use "mfussenegger/nvim-dap"
-    use {'olisikh/nvim-dap-kotlin', branch = 'main' }
     use {
         "rcarriga/nvim-dap-ui",
         requires = {
@@ -53,6 +47,5 @@ return require('packer').startup(function(use)
         }
     }
     use "nyoom-engineering/oxocarbon.nvim"
-    use "~/dev/template.nvim"
 end)
 
