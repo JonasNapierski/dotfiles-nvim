@@ -39,6 +39,7 @@ return require('packer').startup(function(use)
         }
     }
     use "mfussenegger/nvim-dap"
+    use "mfussenegger/nvim-dap-python"
     use {
         "rcarriga/nvim-dap-ui",
         requires = {

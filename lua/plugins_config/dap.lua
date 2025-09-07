@@ -1,7 +1,9 @@
 local dap = require('dap')
-local dapui = require("dapui")
+-- local dapui = require("dapui")
 
-dapui.setup()
+require("dap-python").setup("python")
+
+-- dapui.setup()
 dap.adapters.codelldb = {
   type = 'server',
   port = "13000",
@@ -47,19 +49,19 @@ dap.configurations.cs = {
 }
 
 dap.listeners.before.attach.dapui_config = function()
-    dapui.open()
+    -- dapui.open()
 end
 
 dap.listeners.before.launch.dapui_config = function()
-    dapui.open()
+    -- dapui.open()
 end
 
 dap.listeners.before.event_terminated.dapui_config = function()
-    dapui.close()
+    -- dapui.close()
 end
 
 dap.listeners.before.event_exited.dapui_config = function()
-    dapui.close()
+    -- dapui.close()
 end
 
 -- ----------------------- KEYMAP -------------------------
@@ -182,7 +184,7 @@ vim.keymap.set('n', '<Leader>ds',
 
 vim.keymap.set('n','<Leader>dk',
     function()
-        dapui.float_element()
+        -- dapui.float_element()
     end,
     {
         desc="[DEBUGGER] floating window"
@@ -191,11 +193,13 @@ vim.keymap.set('n','<Leader>dk',
 
 vim.keymap.set('n','<Leader>dn',
     function()
-        dapui.toggle()
+        -- dapui.toggle()
     end,
     {
         desc="[DEBUGGER] open ui"
     }
 )
+
+vim.keymap.set('n', '<Leader>dt', require('dap-python').test_method, { desc = "[DEBUGGER] debug test method under the cursor" })
 
 vim.fn.sign_define('DapBreakpoint', {text='B', texthl='red', linehl='red', numhl='red'})
