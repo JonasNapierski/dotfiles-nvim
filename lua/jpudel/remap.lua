@@ -56,3 +56,5 @@ vim.keymap.set('n', '<leader>n', ':Neotree toggle<cr>', {remap = true, desc="tog
 
 vim.keymap.set('n', 'z<Tab>', ':tabnext<CR>', { noremap = true, desc="Circle throw the tabs", silent = true })
 
+
+vim.keymap.set('t', '<escape>', "<C-\\><C-n><C-w>h",{ silent = true})
