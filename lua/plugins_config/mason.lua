@@ -32,6 +32,18 @@ local on_attach = function(client, bufnr)
         vim.lsp.completion.get()
     end)
 
+    vim.lsp.completion.enable(true, client.id, bufnr, {
+      autotrigger = true,
+      convert = function(item)
+        return { abbr = item.label:gsub('%b()', '') }
+      end,
+    })
+
+    -- trigger on every keystroke
+    if client.server_capabilities.completionProvider then
+        client.server_capabilities.completionProvider.triggerCharacters = { "" }
+    end
+
 end
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -89,10 +101,12 @@ vim.lsp.config.hyprls = {
     on_attach = on_attach,
     capabilities = capabilities,
 }
-vim.lsp.config.omnisharp = {
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
+
+--vim.lsp.config.csharp_ls = {
+--     on_attach = on_attach,
+--    capabilities = capabilities,
+--}
+
 vim.lsp.config.ts_ls = {
     on_attach = on_attach,
     capabilities = capabilities,
