@@ -3,58 +3,7 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- Common on_attach function
 local on_attach = function(client, bufnr)
-    local opts = { noremap = true, silent = true, buffer = bufnr }
-
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
-    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
-    vim.keymap.set('n', '<c-s>', vim.lsp.buf.signature_help, opts)
-    vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format({ async = true }) end, opts)
-
-
-    vim.keymap.set('i', '<Tab>', function()
-        return vim.fn.pumvisible() == 1 and "<C-n>" or "<Tab>"
-    end, { expr = true })
-
-    vim.keymap.set('i', '<S-Tab>', function()
-        return vim.fn.pumvisible() == 1 and "<C-p>" or "<S-Tab>"
-    end, { expr = true })
-
-    vim.keymap.set('i', '<CR>', function()
-        return vim.fn.pumvisible() == 1 and "<C-y>" or "<CR>"
-    end, { expr = true })
-
-    vim.keymap.set('i', '<c-space>', function()
-        vim.lsp.completion.get()
-    end)
-
-    vim.lsp.completion.enable(true, client.id, bufnr, {
-      autotrigger = true,
-      convert = function(item)
-        return { abbr = item.label:gsub('%b()', '') }
-      end,
-    })
-
-    -- trigger on every keystroke
-    if client.server_capabilities.completionProvider then
-        client.server_capabilities.completionProvider.triggerCharacters = { "" }
-    end
-
 end
-
-vim.api.nvim_create_autocmd('LspAttach', {
-    group = vim.api.nvim_create_augroup('my.lsp', {}),
-    callback = function(args)
-        local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-        if client:supports_method('textDocument/completion') then
-            vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true})
-        end
-    end,
-})
 
 vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
 
@@ -102,11 +51,6 @@ vim.lsp.config.hyprls = {
     capabilities = capabilities,
 }
 
---vim.lsp.config.csharp_ls = {
---     on_attach = on_attach,
---    capabilities = capabilities,
---}
-
 vim.lsp.config.ts_ls = {
     on_attach = on_attach,
     capabilities = capabilities,
@@ -115,6 +59,29 @@ vim.lsp.config.basedpyright = {
     on_attach = on_attach,
     capabilities = capabilities,
 }
+
+
+local opts = { }
+
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+vim.keymap.set('n', '<leader>f', function()
+    vim.lsp.buf.format({ async = true })
+end, opts)
+
+
+require("easy-dotnet").setup({
+  roslyn = {
+    capabilities = capabilities,
+    on_attach = on_attach,
+  },
+})
+
 
 require("mason").setup({
     ui = {
@@ -126,5 +93,46 @@ require("mason").setup({
     }
 })
 
--- Init mason and mason-lspconfig LAST
-require("mason-lspconfig").setup()
+require("mason-lspconfig").setup({
+  handlers = {
+    function(server_name)
+      vim.lsp.enable(server_name)
+    end,
+  },
+})
+
+
+local cmp = require("cmp")
+
+cmp.setup({
+  completion = {
+    autocomplete = { cmp.TriggerEvent.TextChanged },
+  },
+
+  mapping = {
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+    ["<Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+  },
+
+  sources = {
+    { name = "nvim_lsp" },
+    { name = "buffer" },
+    { name = "path" },
+  },
+})
+

@@ -74,50 +74,6 @@ return require('packer').startup(function(use)
     use {
         "GustavEikaas/easy-dotnet.nvim",
         requires = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
-        config = function()
-            require("easy-dotnet").setup({
-                lsp = {
-                    enabled = true,            -- enable easy-dotnet's Roslyn LSP
-                    roslynator_enabled = false, -- optional analyzer
-                    on_attach = function(client, bufnr)
-                        -- first call easy-dotnet default on_attach to keep its features
-                        if require("easy-dotnet").on_attach then
-                            require("easy-dotnet").on_attach(client, bufnr)
-                        end
-
-                        -- then add your custom mappings (same as your `on_attach`)
-                        local opts = { noremap = true, silent = true, buffer = bufnr }
-
-                        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-                        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-                        vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-                        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-                        vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-                        vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
-                        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
-                        vim.keymap.set('n', '<c-s>', vim.lsp.buf.signature_help, opts)
-                        vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format({ async = true }) end, opts)
-
-                        -- optional insert mode mappings
-                        vim.keymap.set('i', '<Tab>', function()
-                            return vim.fn.pumvisible() == 1 and "<C-n>" or "<Tab>"
-                        end, { expr = true, buffer = bufnr })
-
-                        vim.keymap.set('i', '<S-Tab>', function()
-                            return vim.fn.pumvisible() == 1 and "<C-p>" or "<S-Tab>"
-                        end, { expr = true, buffer = bufnr })
-
-                        vim.keymap.set('i', '<CR>', function()
-                            return vim.fn.pumvisible() == 1 and "<C-y>" or "<CR>"
-                        end, { expr = true, buffer = bufnr })
-
-                        vim.keymap.set('i', '<C-Space>', function()
-                            require("cmp").complete()
-                        end, { buffer = bufnr })
-                    end,
-                },
-            })
-        end
     }
 end)
 

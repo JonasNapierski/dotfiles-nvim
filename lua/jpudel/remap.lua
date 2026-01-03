@@ -58,3 +58,31 @@ vim.keymap.set('n', 'z<Tab>', ':tabnext<CR>', { noremap = true, desc="Circle thr
 
 
 vim.keymap.set('t', '<escape>', "<C-\\><C-n><C-w>h",{ silent = true})
+-- ---------------------------- LSP ----------------------------
+-- local opts = { noremap = true, silent = true }
+-- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+-- vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+-- vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+-- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+-- vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+-- vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+-- vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+-- vim.keymap.set('n', '<c-s>', vim.lsp.buf.signature_help, opts)
+-- vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format({ async = true }) end, opts)
+
+-- optional insert mode mappings
+vim.keymap.set('i', '<Tab>', function()
+    return vim.fn.pumvisible() == 1 and "<C-n>" or "<Tab>"
+end, { expr = true, buffer = bufnr })
+
+vim.keymap.set('i', '<S-Tab>', function()
+    return vim.fn.pumvisible() == 1 and "<C-p>" or "<S-Tab>"
+end, { expr = true, buffer = bufnr })
+
+vim.keymap.set('i', '<CR>', function()
+    return vim.fn.pumvisible() == 1 and "<C-y>" or "<CR>"
+end, { expr = true, buffer = bufnr })
+
+vim.keymap.set('i', '<C-Space>', function()
+    vim.lsp.completion.get()
+end, { buffer = bufnr })
