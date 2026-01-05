@@ -29,6 +29,7 @@ return require('packer').startup(function(use)
     use "godlygeek/tabular"
     use "preservim/vim-markdown"
     use { 'nvim-treesitter/nvim-treesitter' }
+    use "NeogitOrg/neogit"
     use {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v3.x",
