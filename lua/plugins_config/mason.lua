@@ -60,6 +60,11 @@ vim.lsp.config.basedpyright = {
     capabilities = capabilities,
 }
 
+vim.lsp.config.qmlls = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+
 
 local opts = { }
 
