@@ -22,3 +22,4 @@ vim.opt.backup = false
 vim.opt.writebackup = false
 
 vim.opt.signcolumn = "yes"
+vim.opt.completeopt = { "menuone", "noinsert", "noselect" }

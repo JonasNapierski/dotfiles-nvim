@@ -1,24 +1,20 @@
+require("mason").setup()
+--
 -- Capabilities for completion
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
--- Common on_attach function
-local on_attach = function(client, bufnr)
-end
-
-vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
-
-
 -- Use `vim.lsp.config` to configure servers BEFORE mason-lspconfig sets them up
 vim.lsp.config.clangd = {
-    on_attach = on_attach,
     capabilities = capabilities,
 }
+vim.lsp.enable("clangd")
+
 vim.lsp.config.kotlin_language_server = {
-    on_attach = on_attach,
     capabilities = capabilities,
 }
+vim.lsp.enable("kotlin_language_server")
+
 vim.lsp.config.lua_ls = {
-    on_attach = on_attach,
     capabilities = capabilities,
     settings = {
         Lua = {
@@ -29,42 +25,47 @@ vim.lsp.config.lua_ls = {
         }
     }
 }
+vim.lsp.enable("lua_ls")
 
 vim.lsp.config.cmake = {
-    on_attach = on_attach,
     capabilities = capabilities,
 }
+vim.lsp.enable("cmake")
+
 vim.lsp.config.jsonls = {
-    on_attach = on_attach,
     capabilities = capabilities,
 }
+vim.lsp.enable("jsonls")
+
 vim.lsp.config.html = {
-    on_attach = on_attach,
     capabilities = capabilities,
 }
+vim.lsp.enable("html")
+
 vim.lsp.config.cssls = {
-    on_attach = on_attach,
     capabilities = capabilities,
 }
+vim.lsp.enable("cssls")
+
 vim.lsp.config.hyprls = {
-    on_attach = on_attach,
     capabilities = capabilities,
 }
+vim.lsp.enable("hyprls")
 
 vim.lsp.config.ts_ls = {
-    on_attach = on_attach,
     capabilities = capabilities,
 }
+vim.lsp.enable("ts_ls")
+
 vim.lsp.config.basedpyright = {
-    on_attach = on_attach,
     capabilities = capabilities,
 }
+vim.lsp.enable("basedpyright")
 
 vim.lsp.config.qmlls = {
-    on_attach = on_attach,
     capabilities = capabilities,
 }
-
+vim.lsp.enable("qmlls")
 
 local opts = { }
 
@@ -82,34 +83,6 @@ end, opts)
 vim.keymap.set('n', '<leader>f', function()
     vim.lsp.buf.format()
 end, opts)
-
-
-require("easy-dotnet").setup({
-  roslyn = {
-    capabilities = capabilities,
-    on_attach = on_attach,
-  },
-})
-
-
-require("mason").setup({
-    ui = {
-        icons = {
-            package_installed = "✓",
-            package_pending = "➜",
-            package_uninstalled = "✗"
-        }
-    }
-})
-
-require("mason-lspconfig").setup({
-  handlers = {
-    function(server_name)
-      vim.lsp.enable(server_name)
-    end,
-  },
-})
-
 
 local cmp = require("cmp")
 
