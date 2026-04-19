@@ -3,18 +3,7 @@ Hello, this is my "custom" nvim configuration. Currently it is mostly a replicao
 
 
 ## Installation
-Install `neovim` and `neovim.packer`
-
-## Arch
-```
-yay -S nvim-packer-git
-```
-
-## Other
-```
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-```
+Install `neovim`
 
 ### Plugin Requirements:
 - Mason
@@ -40,7 +29,7 @@ Not realy intended but i will think about it
 - c
 - python
 - Rust
-- (incomming) JavaScript
+- JavaScript/TypeScritp
 
 ## Structure
 
@@ -50,7 +39,7 @@ Not realy intended but i will think about it
 ## Todos 
 
 - [ ] Add install script to simplify the installation process
-- [ ] configure vim-dadbod and vim-dadbod-ui prop. 
+~- [ ] configure vim-dadbod and vim-dadbod-ui prop. ~
 - [ ] Add support for autocompiling markdown files and open them with evince (a default pdf viewer for ubuntu)
 ## What is the Purpose of this Repo
 
