@@ -16,6 +16,10 @@
       "rev": "42b6c7e30327e52b9494d3c5caf64f006b8b74ab",
       "src": "https://github.com/Ilyasyoy/coredor.nvim"
     },
+    "csharp.nvim": {
+      "rev": "e44e275dabbcfc188ce1a5f504aad778e917c814",
+      "src": "https://github.com/iabdelkareem/csharp.nvim"
+    },
     "easy-dotnet.nvim": {
       "rev": "06cc3c7ffd02ef6c62dffea46d4f6e53f1962ef2",
       "src": "https://github.com/GustavEikaas/easy-dotnet.nvim"
@@ -96,6 +100,14 @@
     "plenary.nvim": {
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
       "src": "https://github.com/nvim-lua/plenary.nvim"
+    },
+    "roslyn.nvim": {
+      "rev": "2dcbbe81b48f8377df2281d9be4f2c84ccfff520",
+      "src": "https://github.com/seblyng/roslyn.nvim"
+    },
+    "structlog.nvim": {
+      "rev": "45b26a2b1036bb93c0e83f4225e85ab3cee8f476",
+      "src": "https://github.com/Tastyep/structlog.nvim"
     },
     "tabular": {
       "rev": "12437cd1b53488e24936ec4b091c9324cafee311",

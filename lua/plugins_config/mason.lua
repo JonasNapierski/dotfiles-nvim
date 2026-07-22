@@ -3,16 +3,17 @@ require("mason").setup()
 -- Capabilities for completion
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+vim.lsp.config.roslyn_ls = {
+    capabilities = capabilities,
+}
+
+vim.lsp.enable("roslyn_ls")
+
 -- Use `vim.lsp.config` to configure servers BEFORE mason-lspconfig sets them up
 vim.lsp.config.clangd = {
     capabilities = capabilities,
 }
 vim.lsp.enable("clangd")
-
-vim.lsp.config.kotlin_language_server = {
-    capabilities = capabilities,
-}
-vim.lsp.enable("kotlin_language_server")
 
 vim.lsp.config.lua_ls = {
     capabilities = capabilities,
@@ -25,6 +26,7 @@ vim.lsp.config.lua_ls = {
         }
     }
 }
+
 vim.lsp.enable("lua_ls")
 
 vim.lsp.config.cmake = {
